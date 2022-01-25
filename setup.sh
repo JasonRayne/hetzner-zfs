@@ -532,7 +532,7 @@ echo "======= create zfs pools and datasets =========="
   done
 
   if [[ ${#v_selected_disks[@]} -gt 1 ]]; then
-    pools_mirror_option=raidz
+    pools_mirror_option=mirror
   else
     pools_mirror_option=
   fi
@@ -550,7 +550,7 @@ echo -n "$v_passphrase" | zpool create \
   -o cachefile=/etc/zfs/zpool.cache \
   "${encryption_options[@]}" \
   -O mountpoint=/ -R $c_zfs_mount_dir -f \
-  $v_rpool_name $pools_mirror_option "${rpool_disks_partitions[@]}"
+  $v_rpool_name raidz "${rpool_disks_partitions[@]}"
 
 zfs create -o canmount=off -o mountpoint=none "$v_rpool_name/ROOT"
 zfs create -o canmount=off -o mountpoint=none "$v_bpool_name/BOOT"
