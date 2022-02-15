@@ -681,8 +681,8 @@ console-setup   console-setup/fontsize  string  8x16
 console-setup   console-setup/charmap47 select  UTF-8
 console-setup   console-setup/fontsize-text47   select  8x16
 console-setup   console-setup/codesetcode       string  Lat15
-tzdata tzdata/Areas select Europe
-tzdata tzdata/Zones/Europe select Vienna
+tzdata tzdata/Areas select Pacific
+tzdata tzdata/Zones/America select Los_Angeles
 grub-pc grub-pc/install_devices_empty   boolean true
 CONF'
 
