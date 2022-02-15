@@ -489,7 +489,7 @@ done
 
 echo "======= installing zfs on rescue system =========="
   echo "zfs-dkms zfs-dkms/note-incompatible-licenses note true" | debconf-set-selections
-  apt-get install --yes software-properties-common
+  apt-get install --yes software-properties-common libdbus-1-3
   apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 8CF63AD3F06FC659
   add-apt-repository 'deb http://ppa.launchpad.net/jonathonf/zfs/ubuntu focal main'
   apt update
@@ -783,7 +783,7 @@ eval "\$(dircolors)"
 CONF
 
 echo "========running packages upgrade==========="
-chroot_execute "apt upgrade --yes"
+chroot_execute "apt dist-upgrade --yes"
 
 echo "===========add static route to initramfs via hook to add default routes for Hetzner due to Debian/Ubuntu initramfs DHCP bug ========="
 mkdir -p "$c_zfs_mount_dir/usr/share/initramfs-tools/scripts/init-premount"
@@ -810,7 +810,7 @@ CONF
 chmod 755 "$c_zfs_mount_dir/usr/share/initramfs-tools/scripts/init-premount/static-route"
 
 echo "======= update initramfs =========="
-chroot_execute "update-initramfs -u -k all"
+chroot_execute "update-initramfs -c -k all"
 
 echo "======= update grub =========="
 chroot_execute "update-grub"
